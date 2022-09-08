@@ -11,7 +11,10 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@material-ui/styles": "^4.11.5",
+    "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.4",
+    "@mui/x-data-grid": "^5.17.1",
     "axios": "^0.27.2",
     "moment": "^2.29.4",
     "next": "12.2.5",
@@ -19,8 +22,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
     "react-toastify": "^9.0.8",
-    "styled-components": "^5.3.5",
-    "@material-ui/styles": "^4.11.5"
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
