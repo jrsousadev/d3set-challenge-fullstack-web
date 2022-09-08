@@ -19,7 +19,8 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
     "react-toastify": "^9.0.8",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "@material-ui/styles": "^4.11.5"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
