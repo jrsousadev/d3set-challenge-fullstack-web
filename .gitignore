@@ -5,6 +5,11 @@
 /.pnp
 .pnp.js
 
+# Cache 
+_cacache
+_logs
+_update-notifier-last-checked
+
 # testing
 /coverage
 
