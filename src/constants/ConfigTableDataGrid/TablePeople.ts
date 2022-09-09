@@ -19,7 +19,8 @@ export const TableFieldPeopleBirthDate: GridColDef = {
 }
 
 export const TableFieldPeoplePhone: GridColDef = {
-  field: 'phone',
-  headerName: 'Telefone',
-  width: 300,
+  field: 'phones',
+  headerName: 'Telefones',
+  width: 400,
+  groupable: true
 }

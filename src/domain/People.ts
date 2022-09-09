@@ -1,7 +1,9 @@
 import moment from 'moment';
+import { formatPhoneNumber } from '../utils/formatPhoneNumber';
 
 interface IPhone {
   id: string;
+  peopleId: string;
   phone: string;
 }
 
@@ -14,6 +16,7 @@ export interface IPeople {
 
 export const mapPeople = (people: IPeople) => ({
   ...people,
+  phones: mapGroupPhones(people.peoplePhone),
   birthDate: moment(people.birthDate).format('DD/MM/YYYY'),
 });
 
@@ -22,3 +25,9 @@ export const mapArrayPeople = (listPeoples: IPeople[]) => {
 
   return listPeoplesFormated;
 };
+
+export const mapGroupPhones = (peoplePhones: IPhone[]) => {
+  const listPhones = peoplePhones.map((value) => formatPhoneNumber(value.phone))
+
+  return listPhones ?? [];
+}
