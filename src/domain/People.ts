@@ -11,12 +11,14 @@ export interface IPeople {
   id: string;
   name: string;
   birthDate: string;
+  birthDateISO: Date;
   peoplePhone: IPhone[]
 }
 
 export const mapPeople = (people: IPeople) => ({
   ...people,
   phones: mapGroupPhones(people.peoplePhone),
+  birthDateISO: people.birthDate,
   birthDate: moment(people.birthDate).format('DD/MM/YYYY'),
 });
 

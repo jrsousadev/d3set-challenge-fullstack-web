@@ -6,24 +6,45 @@ import {
   ContainerRangeBoxInfo,
   FormControlWrapper,
   RangeBox,
-} from "../../styles/pages/people/create";
+} from "../../../styles/pages/people/create";
 import { FiUserPlus } from "react-icons/fi";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-import { ButtonPrimary } from "../components/ButtonPrimary";
+import { ButtonPrimary } from "../../components/ButtonPrimary";
 import { useEffect, useState } from "react";
-import { InputComponent } from "../components/InputComponent";
+import { InputComponent } from "../../components/InputComponent";
 import { BiTrash } from "react-icons/bi";
 import { toast } from "react-toastify";
-import { createPeople } from "../services/peopleService/peopleApi";
+import {
+  getPeople,
+  updatePeople,
+} from "../../services/peopleService/peopleApi";
+import { IPeople, mapPeople } from "../../domain/People";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import moment from "moment";
 
-export default function Create() {
+export interface IPhone {
+  id: string;
+  phone: string;
+}
+
+interface IEditProps {
+  people: IPeople;
+}
+
+export default function Edit({ people }: IEditProps) {
   const [loading, setLoading] = useState(false);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
 
-  const [name, setName] = useState("");
-  const [birthDate, setBirthDate] = useState<Date | null | string>(new Date());
-  const [phone, setPhone] = useState("");
-  const [phoneTwo, setPhoneTwo] = useState("");
+  const [name, setName] = useState(people.name);
+  const [birthDate, setBirthDate] = useState<Date | null | string>(
+    people.birthDateISO
+  );
+  const [phone, setPhone] = useState(people.peoplePhone[0].phone);
+  const [phoneTwo, setPhoneTwo] = useState(people.peoplePhone[1]?.phone);
+
+  useEffect(() => {
+    setStep(people.peoplePhone.length);
+  }, []);
 
   const handleNextStep = () => {
     if (step !== 2) {
@@ -48,32 +69,33 @@ export default function Create() {
         throw Error("Preencha todos os campos obrigatórios");
       }
 
-      const phones: string[] = [phone, phoneTwo];
+      const phones: IPhone[] = [
+        { id: people.peoplePhone[0].id, phone },
+        { id: people.peoplePhone[1]?.id, phone: phoneTwo },
+      ];
 
-      await createPeople({
-        birthDate,
+      await updatePeople({
+        birthDate: String(moment(birthDate).format("YYYY-MM-DD")) + 'T03:00:00.000' ,
         name,
-        phone: phones,
+        phones,
+        id: people.id,
       });
 
       toast.success("Pessoa cadastrada com sucesso!");
     } catch (err) {
+      console.log(err);
       if (String(err) !== "Error: Preencha todos os campos obrigatórios")
         toast.error("Um dos números já cadastrado!");
       else toast.error(String(err));
     } finally {
       setLoading(false);
-      setName("");
-      setPhone("");
-      setBirthDate(new Date());
-      setPhoneTwo("");
     }
   };
 
   return (
     <>
       <Head>
-        <title>D3Set | Cadastrar</title>
+        <title>D3Set | {people.name}</title>
       </Head>
 
       <Typography
@@ -82,7 +104,7 @@ export default function Create() {
         paddingBottom="2rem"
         fontWeight="500"
       >
-        Cadastrar Pessoa
+        {people.name}
       </Typography>
 
       <BoxWrapper>
@@ -137,7 +159,6 @@ export default function Create() {
                 </Button>
               </div>
             )}
-
             <Button disabled={step >= 2} onClick={handleNextStep}>
               Adicionar mais um telefone
             </Button>
@@ -150,7 +171,7 @@ export default function Create() {
               loading={loading}
               onHandleClick={handleCreatePeople}
             >
-              Cadastrar
+              Atualizar
             </ButtonPrimary>
             <ButtonPrimary
               variant="outlined"
@@ -165,3 +186,28 @@ export default function Create() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (
+  ctx: GetServerSidePropsContext
+) => {
+  const { id } = ctx.query;
+
+  const peopleData = await getPeople({ id: String(id) });
+
+  if (!peopleData) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  const people = mapPeople(peopleData);
+
+  return {
+    props: {
+      people,
+    },
+  };
+};

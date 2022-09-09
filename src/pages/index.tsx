@@ -24,6 +24,7 @@ import { IPeople, mapArrayPeople } from "../domain/People";
 import { ButtonTableActions } from "../../styles/pages/people";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 interface IHomeProps {
   peoples: IPeople[];
@@ -103,9 +104,11 @@ export default function Home({ peoples: data }: IHomeProps) {
             renderCell: (params) => (
               <div>
                 <Tooltip title="Editar">
-                  <ButtonTableActions onClick={() => {}}>
-                    <BorderColorIcon className="icon" />
-                  </ButtonTableActions>
+                  <Link href={`/edit/${String(params.id)}`}>
+                    <ButtonTableActions>
+                      <BorderColorIcon className="icon" />
+                    </ButtonTableActions>
+                  </Link>
                 </Tooltip>
 
                 <Tooltip title="Excluir">

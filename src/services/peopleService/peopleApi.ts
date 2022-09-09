@@ -1,5 +1,6 @@
+import { IPhone } from "../../pages/edit/[id]";
 import { api } from "../api";
-import { CREATE_PEOPLE, DELETE_PEOPLE, GET_ALL_PEOPLES, GET_PEOPLE } from "./peopleRoutes";
+import { CREATE_PEOPLE, DELETE_PEOPLE, GET_ALL_PEOPLES, GET_PEOPLE, UPDATE_PEOPLE } from "./peopleRoutes";
 
 interface ICreatePeople {
   name: string;
@@ -37,14 +38,28 @@ export const getPeople = async ({ id }: IGetPatient) => {
   try {
     const response = await api.get(GET_PEOPLE(id));
     return response.data;
-  } catch (err) {
-    throw err;
-  }
+  } catch (err) {}
 };
 
 export const getAllPeoples = async () => {
   try {
     const response = await api.get(GET_ALL_PEOPLES);
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+interface IUpdatePeople {
+  id: string;
+  name: string;
+  birthDate: any;
+  phones: IPhone[];
+}
+
+export const updatePeople = async ({ id, name, birthDate, phones }: IUpdatePeople) => {
+  try {
+    const response = await api.put(UPDATE_PEOPLE(id), {name, birthDate, phones});
     return response.data;
   } catch (err) {
     throw err;
