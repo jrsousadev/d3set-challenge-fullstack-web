@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const pages = [
   { title: "Lista de Pessoas", href: "/" },
-  { title: "Cadastrar Pessoa", href: "/register" },
+  { title: "Cadastrar Pessoa", href: "/create" },
 ];
 
 const ResponsiveAppBar = () => {
