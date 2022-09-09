@@ -11,7 +11,7 @@ export interface IPeople {
   id: string;
   name: string;
   birthDate: string;
-  birthDateISO: Date;
+  birthDateISO: Date | string;
   peoplePhone: IPhone[]
 }
 
