@@ -1,34 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 📋 Challenge D3Set Front-end
 
-## Getting Started
+Projeto solicitado no desafio, sistema onde dá para cadastrar, editar, excluir, listar pessoas!
 
-First, run the development server:
+## O que foi utilizado no projeto:
 
-```bash
-npm run dev
-# or
+- Typescript
+- React 
+- Next
+- MUI
+- Styled Components
+
+### Link do repositório da API (Back-end)
+
+🔗 [Back-end](https://github.com/jrsousadev/d3set-challenge-fullstack-api)
+
+### Deploy 
+
+🔗 [Conhecer aplicação](https://challenge-d3set-web.herokuapp.com/)
+
+### Recursos
+
+#### Filtra pessoas com mais de um telefone
+
+![image](https://user-images.githubusercontent.com/92350736/189261334-05b63151-bb7a-43e2-acb5-8b223bf52bb4.png)
+
+#### Cadastrar pessoa
+
+![image](https://user-images.githubusercontent.com/92350736/189261383-bf50a3ef-b9ab-4e14-8c57-700fb2b62d57.png)
+
+#### Listagem de pessoas
+
+![image](https://user-images.githubusercontent.com/92350736/189261279-f98b9392-dd35-4bbe-aca9-5837677fab8c.png)
+
+### Iniciando o Projeto
+
+**1-** Clone repository.
+
+**2-** Install dependecies.
+```js
+yarn
+// or
+yarn install
+// and
 yarn dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
