@@ -1,3 +1,4 @@
+import { styled } from '@mui/material/styles';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -48,4 +49,10 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export { GlobalStyle };
+const Content = styled('div')`
+  max-width: 1700px;
+  margin: auto;
+  padding: 2rem 0;
+`
+
+export { GlobalStyle, Content };
