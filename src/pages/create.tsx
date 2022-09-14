@@ -15,6 +15,7 @@ import { InputComponent } from "../components/InputComponent";
 import { BiTrash } from "react-icons/bi";
 import { toast } from "react-toastify";
 import { createPeople } from "../services/peopleService/peopleApi";
+import { removeCharSpecial } from "../utils/removeCharSpecial";
 
 export default function Create() {
   const [loading, setLoading] = useState(false);
@@ -48,7 +49,10 @@ export default function Create() {
         throw Error("Preencha todos os campos obrigatórios");
       }
 
-      const phones: string[] = [phone, phoneTwo];
+      const phones: string[] = [
+        removeCharSpecial(phone),
+        removeCharSpecial(phoneTwo),
+      ];
 
       await createPeople({
         birthDate,
