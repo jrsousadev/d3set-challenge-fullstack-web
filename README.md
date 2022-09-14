@@ -34,13 +34,16 @@ Projeto solicitado no desafio, sistema onde dá para cadastrar, editar, excluir,
 
 ### Iniciando o Projeto
 
-**1-** Clone repository.
+**1-** Clone repository and install dependencies.
+```sh
+# install dependencies
+> yarn
+# or
+> yarn install
 
-**2-** Install dependecies.
-```js
-yarn
-// or
-yarn install
-// and
-yarn dev
+# copy .env file
+> cp .env.example .env
+
+# start project
+> yarn dev
 ```
