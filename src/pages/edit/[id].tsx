@@ -21,6 +21,7 @@ import {
 import { IPeople, mapPeople } from "../../domain/People";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import moment from "moment";
+import { removeCharSpecial } from "../../utils/removeCharSpecial";
 
 export interface IPhone {
   id: string;
@@ -70,8 +71,8 @@ export default function Edit({ people }: IEditProps) {
       }
 
       const phones: IPhone[] = [
-        { id: people.peoplePhone[0].id, phone },
-        { id: people.peoplePhone[1]?.id, phone: phoneTwo },
+        { id: people.peoplePhone[0].id, phone: removeCharSpecial(phone) },
+        { id: people.peoplePhone[1]?.id, phone: removeCharSpecial(phoneTwo) },
       ];
 
       await updatePeople({
